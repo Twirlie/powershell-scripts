@@ -1,6 +1,6 @@
-$fso = new-object -com Scripting.FileSystemObject
+$FileSystemObject = new-object -com Scripting.FileSystemObject
 $directories = Get-ChildItem -Directory `
-| Select-Object @{l = 'Size'; e = { $fso.GetFolder($_.FullName).Size } }, FullName
+| Select-Object @{l = 'Size'; e = { $FileSystemObject.GetFolder($_.FullName).Size } }, FullName
 
 $totalSize = ($directories | Measure-Object -Property Size -Sum).Sum
 
