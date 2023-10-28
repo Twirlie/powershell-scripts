@@ -1,5 +1,5 @@
 $FileSystemObject = new-object -com Scripting.FileSystemObject
-$directories = Get-ChildItem -Directory `
+$directories = Get-ChildItem -Directory -Force `
 | Select-Object @{l = 'Size'; e = { $FileSystemObject.GetFolder($_.FullName).Size } }, FullName
 
 $totalSize = ($directories | Measure-Object -Property Size -Sum).Sum
