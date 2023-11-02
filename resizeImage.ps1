@@ -19,12 +19,13 @@ if (!$delete) {
 Write-Output "Resizing images in $path at $size "
 
 $count = 0
+
 Get-ChildItem -Recurse ($path) -Include @("*.png", "*.jpg")
 | ForEach-Object {
   $file = $_.Name
-  $folder = $_.DirectoryName
+  $folder = $_.Directory
   Write-Output "$folder\$file resizing..."
-  magick.exe "$file" -resize $size "$folder\$file-resized.jpg"
+  magick.exe "$folder\$file" -resize $size "$folder\$file-resized.jpg"
   Write-Output "$file has been resized!"
   if ($delete -eq "true") {
     Remove-Item $_
