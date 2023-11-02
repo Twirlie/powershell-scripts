@@ -5,7 +5,7 @@ param(
 )
 
 if (!$size) {
-  $size = "1200x1200"
+  $size = "1000x1000"
 }
 
 if (!$path) {
@@ -16,8 +16,9 @@ if (!$delete) {
   $delete = "false"
 }
 
-Write-Output "Resizing images in $path at $size"
+Write-Output "Resizing images in $path at $size "
 
+$count = 0
 Get-ChildItem -Recurse ($path) -Include @("*.png", "*.jpg")
 | ForEach-Object {
   $file = $_.Name
@@ -29,5 +30,8 @@ Get-ChildItem -Recurse ($path) -Include @("*.png", "*.jpg")
     Remove-Item $_
     Write-Output "$_ has been deleted!"
   }
+  $count = $count + 1
+  Write-Output ""
 }
 
+Write-Output "$count images have been resized"
