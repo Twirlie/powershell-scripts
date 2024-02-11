@@ -8,7 +8,7 @@ if (!$url) {
   Return
 }
 if (!$format) {
-  $format = 22
+  $format = "bestvideo[height<=?1080]+bestaudio/best"
 }
 Write-Host "Opening Video from Youtube..."
 mpv $url --ytdl-format=$format
